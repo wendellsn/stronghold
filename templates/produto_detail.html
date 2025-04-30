@@ -1,0 +1,14 @@
+<h1>{{ produto.nome }}</h1>
+<p>{{ produto.descricao }}</p>
+<h3>Cotas</h3>
+<ul>
+  {% for cota in cotas %}
+    <li>Nº {{ cota.numero_cota }} - {{ cota.status }}</li>
+  {% endfor %}
+</ul>
+{% if user.is_authenticated %}
+  <form method="post" action="{% url 'sortear' produto.id %}">
+    {% csrf_token %}
+    <button type="submit">Sortear</button>
+  </form>
+{% endif %}
